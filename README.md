@@ -7,3 +7,5 @@ git branch -M main
 git remote add origin https://github.com/jaumevc/capFormacioAngular.git
 git push -u origin main
 
+path dels projectes de formacio:
+C:\Users\jvallsca\AngularAutoformacio\UdemyAngular
