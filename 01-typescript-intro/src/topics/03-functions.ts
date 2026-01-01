@@ -23,3 +23,32 @@ function multipply(param1:number, param2?:number, param3:number = 2) :number{
 
 const producte = multipply(7);
 console.log({multiplicacio: producte});
+
+
+// video 3.15:
+console.log('video 3.15:\n');
+interface Personatge{
+    nom:string;
+    puntuacio:number;
+    mostrarPunts: () => void;
+};
+
+const jugador:Personatge /*:Personatge*/ ={
+    nom: 'Super Jaume', //'Hiper Susana',
+    puntuacio: 25,
+    mostrarPunts(){
+        console.log('Vaig primer amb'+' : '+this.puntuacio+' punts.');
+    }
+};
+
+const curar = (perso:Personatge, quantitat:number)=>{
+    perso.puntuacio += quantitat;
+};
+
+curar(jugador, 35);
+
+jugador.mostrarPunts();
+
+console.table({jugador});
+
+
