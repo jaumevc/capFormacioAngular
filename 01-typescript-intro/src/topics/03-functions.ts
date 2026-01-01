@@ -18,6 +18,7 @@ const resultFletxa:string = addNumbersFletxa(5,5);
 console.log({funcioFletxa: resultFletxa});
 
 function multipply(param1:number, param2?:number, param3:number = 2) :number{
+    if(param2) console.log(param2);
     return param1 * param3;
 };
 
