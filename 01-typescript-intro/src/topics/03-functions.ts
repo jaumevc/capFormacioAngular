@@ -4,7 +4,7 @@ export function addNumbers( a:number, b:number ){
     //puc fer la concatenacio usant ``i els valors dels arguments en ${a} i ${b}
     console.info(`els parametres enviats a la funció (concatenant amb `+'${}'+`), són: ${a} i ${b}`);
     return a + b
-};
+}
 
 // const result = addNumbers(2, 3);
 // console.log({result});
@@ -20,7 +20,7 @@ console.log({funcioFletxa: resultFletxa});
 function multipply(param1:number, param2?:number, param3:number = 2) :number{
     if(param2) console.log(param2);
     return param1 * param3;
-};
+}
 
 const producte = multipply(7);
 console.log({multiplicacio: producte});
@@ -32,7 +32,7 @@ interface Personatge{
     nom:string;
     puntuacio:number;
     mostrarPunts: () => void;
-};
+}
 
 const jugador:Personatge /*:Personatge*/ ={
     nom: 'Super Jaume', //'Hiper Susana',

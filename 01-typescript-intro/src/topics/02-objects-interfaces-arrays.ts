@@ -7,14 +7,14 @@ interface defTipus {
     altres:boolean;
     skills:string[];
     localitat?:string;
-};
+}
 
 const objecte : defTipus={
     name: 'Jaume',
     hp:100,
     altres: true,
     skills:['guapo', 'patidor'] ,
-}
+};
 
 console.log(objecte);
 

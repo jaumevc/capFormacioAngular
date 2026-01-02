@@ -6,13 +6,13 @@ interface SuperHero {
     age: number;
     address: Adress;
     showAddress: ()=> string;
-};
+}
 
 interface Adress {
     calle: string;
     pais: string;
     city: string;
-};
+}
 
 const superHeroe : SuperHero = {
     name: 'Spiderman',

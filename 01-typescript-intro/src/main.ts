@@ -4,6 +4,7 @@ import './topics/02-objects-interfaces-arrays';
 //import './topics/03-functions';
 import { addNumbers } from './topics/03-functions'; 
 import './topics/04-tasca-types';
+import './topics/05-basic-destructuring';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 const result = addNumbers(2, 3);
