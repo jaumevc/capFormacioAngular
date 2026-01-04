@@ -47,23 +47,31 @@ interface TaxOptions {
     taxRate: number;
     discount?: number;
 }
-function taxCalculation(options: TaxOptions): number[] {
+
+//function taxCalculation(options: TaxOptions): number[] {
+//function taxCalculation({ products, taxRate, discount = 0 }: TaxOptions): [number, number, number] {
+
+function taxCalculation(options: TaxOptions): [number, number, number] {
     const { products, taxRate, discount = 0 } = options;
+    
     let total = 0;
 
     // for (const product of products) {
     //     total += product.price;
     // }
-
-    options.products.forEach(product => {
-        total += product.price;
+    // options.products.forEach(product => {
+    //     total += product.price;
+    // });
+    // options.products.forEach(({ price }) => {
+    //     total += price;
+    // });
+    products.forEach(({ price }) => {
+        total += price;
     });
-
 
     const tax = total * taxRate;
     const finalTotal = total + tax - discount;
     return [total, tax, finalTotal];
-
 }
 
 const results = taxCalculation({
@@ -76,7 +84,15 @@ console.log('Subtotal: $' + results[0].toFixed(2));
 console.log('Tax: $' + results[1].toFixed(2));
 console.log('Final Total: $' + results[2].toFixed(2));  
 
+console.log('3.20 - RESULTATS DESESTRUCTURACIÓ DELS RETORNATS PER LA FUNCIÓ taxCalculation():');
+const [subtotal, tax, finalTotal] = taxCalculation({
+    products: shoppingCard,
+    taxRate: 0.10,
+});
 
+console.log('Subtotal (desestructurat): $' + subtotal.toFixed(2));
+console.log('Tax (desestructurat): $' + tax.toFixed(2));
+console.log('Final Total (desestructurat): $' + finalTotal.toFixed(2)); 
 
 
 export{}
