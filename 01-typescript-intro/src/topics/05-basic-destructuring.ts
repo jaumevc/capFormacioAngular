@@ -21,12 +21,12 @@ const audioPlayer: AudioPlayer={
         year: 2020
     }
 };
-const{ song, songDuration, audioVolume, details:{author}}= audioPlayer;
+//const{ song, songDuration, audioVolume, details:{author}}= audioPlayer;
 
-console.log('Destructuring: la canço actual es: '+song);
-console.log('Destructuring: la durada de la canço es: '+songDuration);
-console.log('Destructuring: el volum de la canço es: '+audioVolume);
-console.log('Destructuring: l\'autor de la canço es: '+author); 
+// console.log('Destructuring: la canço actual es: '+song);
+// console.log('Destructuring: la durada de la canço es: '+songDuration);
+// console.log('Destructuring: el volum de la canço es: '+audioVolume);
+// console.log('Destructuring: l\'autor de la canço es: '+author); 
 
 //console.log('l\'any de la canço es: '+year);
 //console.log('l\'any de la canço es: '+details.year);
@@ -40,6 +40,27 @@ console.log('Destructuring: l\'autor de la canço es: '+author);
 // const author= audioPlayer.details.author;
 
 //o també a:
-console.log('NO DESTRUCTURING: la canço actual es: '+audioPlayer.song); //etc...
+console.log('NO DESTRUCTURING like: audioPlayer.song)-> la canço actual es: '+audioPlayer.song); //etc...
+
+//Reanomenar variables per evitar conflictes en desentructuracio d'objecte:
+// const song = 'Another song name';
+// console.log(`Declaro variable com a song: ${song}`)
+// const {song:mysong}= audioPlayer;
+// console.log('Destructuring with rename mySong: la canço actual es: '+mysong);
+
+//o també:
+console.log('ó també:')
+const{ song: mySong, songDuration: mySongDuration}= audioPlayer;
+console.log('Destructuring with rename: la canço actual es: '+mySong);
+console.log('Destructuring with rename: la durada de la canço es: '+mySongDuration);
+
+//Desestructuracio de classes aniuades:
+//const{ song, songDuration, audioVolume, details:{author}}= audioPlayer;
+//console.log('Destructuring classes aniuades opcio 1: l\'autor de la canço es: '+author);
+const{ song, songDuration, audioVolume, details}= audioPlayer;
+const {author}= details; 
+console.log('Destructuring classes aniuades opcio 2: l\'autor de la canço es: '+author);
+
+
 //export {};
 
