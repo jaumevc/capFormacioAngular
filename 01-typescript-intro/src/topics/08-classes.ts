@@ -14,4 +14,4 @@ export class Person{
 const person1 = new Person();
 console.log('Person Name:', person1.name);
 console.log('Person Adress:', person1.adress);
-console.log('Person Age:', person1.age); // Error: 'age' is private
+//console.log('Person Age:', person1.age); // Error: 'age' is private
