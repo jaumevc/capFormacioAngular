@@ -18,4 +18,4 @@ console.log(
     {name, helpPoints, isAlive}
 );
 
-//export {};
+export {};

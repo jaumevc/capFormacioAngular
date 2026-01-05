@@ -30,3 +30,5 @@ const superHeroe : SuperHero = {
 
 const address = superHeroe.showAddress();
 console.log( address );
+
+export{}

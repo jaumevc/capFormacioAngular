@@ -85,5 +85,6 @@ console.log('Destructuring array amb valor per defecte (const [p1a, p2a, p3a, p4
 // const [p1, , p3b]= dbz;
 // console.log('Destructuring array (const [p1, , p3b]= dbz;): el 1er personatge es: '+p1); 
 // console.log('Destructuring array (const [p1, , p3b]= dbz;): el 3er personatge es: '+p3b);   
-//export {};
+
+export {};
 

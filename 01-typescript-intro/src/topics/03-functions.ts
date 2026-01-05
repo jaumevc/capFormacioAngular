@@ -52,4 +52,4 @@ jugador.mostrarPunts();
 
 console.table({jugador});
 
-
+export{}
