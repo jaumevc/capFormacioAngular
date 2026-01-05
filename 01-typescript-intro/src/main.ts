@@ -6,8 +6,8 @@ import { addNumbers } from './topics/03-functions';
 // import './topics/04-tasca-types';
 // import './topics/05-basic-destructuring';
 // import './topics/06-function-destructuring';
-import './topics/07-import-export';
-
+//import './topics/07-import-export';
+import './topics/08-classes';   
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 const result = addNumbers(2, 3);
