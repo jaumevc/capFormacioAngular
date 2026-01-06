@@ -1,17 +1,25 @@
 
 export class Person{
-    public name: string|undefined;
-    public adress?: string;
-    private age?: number;
+    // public name: string|undefined;
+    // public adress?: string;
+    // private age?: number;
 
-    constructor(){
-        this.name = "John"; 
-        this.adress = "123 Main St";
-        this.age = 30;
-    }
+    // constructor(name: string, adress: string, age?: number){
+    //     this.name = name; 
+    //     this.adress = adress;
+    //     this.age = age;
+    // }
+
+    constructor(public name: string, public adress: string, private age?: number){ }
 }
    
-const person1 = new Person();
-console.log('Person Name:', person1.name);
-console.log('Person Adress:', person1.adress);
+//const person1 = new Person();
+//console.log('Person Name:', person1.name);
+//console.log('Person Adress:', person1.adress);
 //console.log('Person Age:', person1.age); // Error: 'age' is private
+
+const person2 = new Person('Jaume', 'Lleida', 54);
+
+console.log('Person Name:', person2.name);
+console.log('Person Adress:', person2.adress);
+//console.log('Person Age:', person2.age); 
