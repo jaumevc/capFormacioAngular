@@ -61,4 +61,4 @@ console.log('Hero vacationalAdress:', hero1.vacationalAdress);
 console.log('Hero money:', hero1.money);
 console.log('Hero name:', hero1.person.name);
 console.log('Hero adress:', hero1.person.adress);
-console.log('Hero Age:', hero1.person.age);
+//console.log('Hero Age:', hero1.person.age);
