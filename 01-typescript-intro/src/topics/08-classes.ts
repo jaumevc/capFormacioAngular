@@ -20,12 +20,12 @@ export class Person{
 
 const person2 = new Person('Jaume', 'Lleida', 54);
 
-console.log('Person Name:', person2.name);
-console.log('Person Adress:', person2.adress);
+// console.log('Person Name:', person2.name);
+// console.log('Person Adress:', person2.adress);
 //console.log('Person Age:', person2.age); 
 
 export class Hero extends Person{ 
-    constructor(mot: string, vacationalAdress: string, money:number){
+    constructor(public mot: string, public vacationalAdress: string, public money:number){
         super(mot, 'Torredembarra', 45);
     }
 }
