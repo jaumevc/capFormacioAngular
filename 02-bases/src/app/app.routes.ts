@@ -1,8 +1,7 @@
 import { Routes } from '@angular/router';
+import { count } from 'rxjs';
+import { CounterComponent } from './pages/counter/counter.component';
 
 export const routes: Routes = [
-    // /holaMon -> HolaMonComponent
-    // /admin -> AdminComponent
-    // / (ruta buida) -> IniciComponent
-    // /404 -> PageNotFoundComponent
+   { path: '', component: CounterComponent },
 ];
