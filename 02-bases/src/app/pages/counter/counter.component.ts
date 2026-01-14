@@ -31,12 +31,12 @@ export class CounterComponent {
 
     counterSignal = signal(10);
 
-    protected increase(): void {
-        this.counter += 1;
+    protected increase(value:number): void {
+        this.counter += value;
         // es recomana usar 'update' per evitar problemes de rendiment enlloc 
         // de set perque aquest reseteja el valor anterior
         //this.counterSignal.set( this.counterSignal() + this.counterSignal());
-       this.counterSignal.update(currentValue => currentValue + currentValue);
+       this.counterSignal.update((currentValue) => currentValue + value);
     }
     protected decrease(): void {
         this.counter -= 1;
