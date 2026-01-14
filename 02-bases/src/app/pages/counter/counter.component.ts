@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, signal } from "@angular/core";
 
 @Component({
     // template: `
@@ -28,14 +28,22 @@ import { Component } from "@angular/core";
 export class CounterComponent {
 
     protected counter = 10;
+
+    counterSignal = signal(10);
+
     protected increase(): void {
         this.counter += 1;
+        // es recomana usar 'update' per evitar problemes de rendiment enlloc 
+        // de set perque aquest reseteja el valor anterior
+        //this.counterSignal.set( this.counterSignal() + this.counterSignal());
+       this.counterSignal.update(currentValue => currentValue + currentValue);
     }
     protected decrease(): void {
         this.counter -= 1;
     }
 
     protected reset(): void {
-        this.counter = 10;
+        this.counter = 0;
+        this.counterSignal.set(0);
     }
 }
