@@ -1,4 +1,4 @@
-import { Component, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 
 @Component({
     // template: `
@@ -24,12 +24,23 @@ import { Component, signal } from "@angular/core";
     //     }   
     // `
     styleUrl: './counter.component.css',
+    //changeDetection:  ChangeDetectionStrategy.OnPush,
 })  
 export class CounterComponent {
 
-    protected counter = 10;
+    counter = 10;
 
     counterSignal = signal(10);
+
+    // constructor() {
+    //     //cada 2 segons va mostrant u tick 
+    //     setInterval(() => {
+    //         //this.counter += 1;
+    //         this.increase(1);
+    //         this.counterSignal.update( (currentValue) => currentValue + 1 );
+    //         console.log('tick');
+    //     }, 2000);
+    // }
 
     protected increase(value:number): void {
         this.counter += value;
