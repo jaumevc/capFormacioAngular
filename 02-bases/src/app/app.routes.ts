@@ -7,4 +7,6 @@ import { HeroPageComponent } from './pages/hero/hero-page.component';
 export const routes: Routes = [
    { path: '', component: CounterComponent },
    { path: 'hero', component: HeroPageComponent }, 
+   //{ path: '**', component: CounterComponent },
+   { path: '**', redirectTo: '' },
 ];
