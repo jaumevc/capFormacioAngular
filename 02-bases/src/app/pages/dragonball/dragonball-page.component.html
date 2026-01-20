@@ -18,7 +18,15 @@
 
         <ul class="list-group">
             @for (personatge of characters(); track personatge.id; let idx = $index) {
-                <li class="list-group-item">{{idx +1 }} - {{ personatge.name }} - {{ personatge.power }} 
+                <li class="list-group-item">
+                    {{idx +1 }} - {{ personatge.name }} - 
+                    
+                    <!-- <strong [class.text-danger] ="personatge.power < 7000"> -->
+                    <!-- <strong [ngClass] ="powerClasses()[idx]"> -->
+                    <strong [ngStyle]="powerStyles()[idx]">
+                            {{ personatge.power }}
+                    </strong>
+                    
                     <button class="btn btn-danger btn-sm float-end">Eliminar</button>
                 </li>
             }
