@@ -16,11 +16,12 @@
 
         <h3>Llista de personatges:</h3>
 
-        <ol class="list-group">
-            <li class="list-group-item">Personatge 1 - Poder 1 <button class="btn btn-danger btn-sm float-end">Eliminar</button></li>
-            <li class="list-group-item">Personatge 2 - Poder 2 <button class="btn btn-danger btn-sm float-end">Eliminar</button></li>
-            <li class="list-group-item">Personatge 3 - Poder 1 <button class="btn btn-danger btn-sm float-end">Eliminar</button></li>
-            <li class="list-group-item">Personatge 4 - Poder 2 <button class="btn btn-danger btn-sm float-end">Eliminar</button></li>
-        </ol>
+        <ul class="list-group">
+            @for (personatge of characters(); track personatge.id; let idx = $index) {
+                <li class="list-group-item">{{idx +1 }} - {{ personatge.name }} - {{ personatge.power }} 
+                    <button class="btn btn-danger btn-sm float-end">Eliminar</button>
+                </li>
+            }
+        </ul>
     </div>
 </section>
