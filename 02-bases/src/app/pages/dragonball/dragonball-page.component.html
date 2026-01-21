@@ -2,33 +2,35 @@
 <hr/>
 <section class="row">
     <div class="col-12 col-sm-6">
-
         <h3>Afegir personatge:</h3>
 
         <input type="text" class="form-control mt-2 mb-2" placeholder="Nom del personatge"/>
         <input type="text" class="form-control mt-2 mb-2" placeholder="Poder del personatge"/>
       
         <button class="btn btn-primary mt-2">Afegir</button>
-
     </div> 
-    
     <div class="col-12 col-sm-6">
 
         <h3>Llista de personatges:</h3>
 
         <ul class="list-group">
             @for (personatge of characters(); track personatge.id; let idx = $index) {
-                <li class="list-group-item">
-                    {{idx +1 }} - {{ personatge.name }} - 
+                @if (personatge.power > 7000) {
+
+                    <li class="list-group-item">
+                        {{idx +1 }} - {{ personatge.name }} - 
                     
-                    <!-- <strong [class.text-danger] ="personatge.power < 7000"> -->
-                    <!-- <strong [ngClass] ="powerClasses()[idx]"> -->
-                    <strong [ngStyle]="powerStyles()[idx]">
+                        <!-- <strong [class.text-danger] ="personatge.power < 7000"> -->
+                        <!-- <strong [ngClass] ="powerClasses()[idx]"> -->
+                        <strong [ngStyle]="powerStyles()[idx]">
                             {{ personatge.power }}
-                    </strong>
+                        </strong>
                     
-                    <button class="btn btn-danger btn-sm float-end">Eliminar</button>
-                </li>
+                        <button class="btn btn-danger btn-sm float-end">Eliminar</button>
+                    </li>
+                }  @else {
+                     <strong> no cal mostrar el personatge de poders inferior o igual a 7000</strong>
+                }
             }
         </ul>
     </div>
