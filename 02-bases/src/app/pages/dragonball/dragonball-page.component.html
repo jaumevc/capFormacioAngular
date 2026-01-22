@@ -2,9 +2,16 @@
 <hr/>
 <section class="row">
     <div class="col-12 col-sm-6">
-        <h3>Afegir personatge:</h3>
+        <h3>Afegir personatge: {{name()}}</h3>
 
-        <input type="text" class="form-control mt-2 mb-2" placeholder="Nom del personatge"/>
+        <input 
+            type="text" 
+            class="form-control mt-2 mb-2" 
+            placeholder="Nom del personatge"
+            [value]="name()"
+            (change)="name.set(txtName.value)"
+            #txtName 
+        />
         <input type="text" class="form-control mt-2 mb-2" placeholder="Poder del personatge"/>
       
         <button class="btn btn-primary mt-2">Afegir</button>
@@ -16,7 +23,6 @@
         <ul class="list-group">
             @for (personatge of characters(); track personatge.id; let idx = $index) {
                 @if (personatge.power > 7000) {
-
                     <li class="list-group-item">
                         {{idx +1 }} - {{ personatge.name }} - 
                     
