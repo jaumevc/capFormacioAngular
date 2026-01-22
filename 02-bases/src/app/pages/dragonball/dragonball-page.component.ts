@@ -13,18 +13,27 @@ interface Character {
   styleUrl: './dragonball-page.component.css',
 })
 export class DragonballPageComponent {
-
   name = signal('Dragon Ball Z');
   power = signal(10000);
   
-
-  characters = signal<Character[]>([
-    { id: 1, name: 'Goku', power: 9001 },
-    { id: 2, name: 'Vegeta', power: 8500 },
-    { id: 3, name: 'Gohan', power: 7000 },
-    { id: 4, name: 'Piccolo', power: 6500 },
-    { id: 5, name: 'Frieza', power: 12000 },
+  characters = signal<Character[]>([{ id: 1, name: 'Goku', power: 9001 },
+    { id: 2, name: 'Vegeta', power: 8500 },{ id: 3, name: 'Gohan', power: 7000 },
+    { id: 4, name: 'Piccolo', power: 6500 },{ id: 5, name: 'Frieza', power: 12000 },
   ]);
+
+  addPersonatge() {
+    if(!this.name() || !this.power() || this.power() <= 0 ) {
+      return; //console.log('Character added:', this.name(), this.power() );
+    }  
+    const newCharacter: Character = {
+      id: this.characters().length + 1,
+      name: this.name(),
+      power: this.power(),
+    };
+    this.characters.update(chars => [...chars, newCharacter]);  
+    this.name.set('');
+    this.power.set(0);  
+  }
 
 //   powerClasses = computed(() => {
 //     const chars = this.characters();
@@ -40,21 +49,22 @@ export class DragonballPageComponent {
   // });
 
   
-powerStyles = computed(() => {
-  const chars = this.characters();
-  const styles: Array<Record<string, string>> = new Array(chars.length);
-  for (let i = 0; i < chars.length; i++) {
-    const p = chars[i].power;
-    // Tria els colors que vulguis; aquí poso un exemple tipus Bootstrap
-    if (p < 7000) {
-      styles[i] = { color: '#dc3545', 'font-weight': '600' }; // danger = vermell
-    } else if (p <= 9000) {
-      styles[i] = { color: '#ffc107', 'font-weight': '600' }; // warning = groc/ambre
-    } else {
-      styles[i] = { color: '#0d6efd', 'font-weight': '600' }; // primary = blau
+  powerStyles = computed(() => {
+    const chars = this.characters();
+    const styles: Array<Record<string, string>> = new Array(chars.length);
+    for (let i = 0; i < chars.length; i++) {
+      const p = chars[i].power;
+      // Tria els colors que vulguis; aquí poso un exemple tipus Bootstrap
+      if (p < 7000) {
+        styles[i] = { color: '#dc3545', 'font-weight': '600' }; // danger = vermell
+      } else if (p <= 9000) {
+        styles[i] = { color: '#ffc107', 'font-weight': '600' }; // warning = groc/ambre
+      } else {
+        styles[i] = { color: '#0d6efd', 'font-weight': '600' }; // primary = blau
+      }
     }
-  }
-  return styles;
-});
+    return styles;
+  });
 
-}
+  
+} 
