@@ -1,4 +1,4 @@
-import { /*NgClass,*/ NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { Component, computed, signal} from '@angular/core';
 
 interface Character { 
@@ -8,25 +8,23 @@ interface Character {
 }
 
 @Component({
-  imports: [/*NgClass,*/NgStyle],
-  templateUrl: './dragonball-page.component.html',
-  styleUrl: './dragonball-page.component.css',
+  imports: [NgStyle],
+  templateUrl: './dragonball-super-page.component.html',
+  styleUrl: './dragonball-super-page.component.css',
 })
-export class DragonballPageComponent {
-  name = signal('Dragon Ball Z');
-  power = signal(10000);
+export class DragonballSuperPageComponent {
+  name = signal('');
+  power = signal(0);
   
   characters = signal<Character[]>([
     { id: 1, name: 'Goku', power: 9001 },
-    // { id: 2, name: 'Vegeta', power: 8500 },
-    // { id: 3, name: 'Gohan', power: 7000 },
-    // { id: 4, name: 'Piccolo', power: 6500 },
-    // { id: 5, name: 'Frieza', power: 12000 },
+    { id: 2, name: 'Vegeta', power: 8500 },    
   ]);
 
   addPersonatge() {
+    //console.log('Character added:', this.name(), this.power() );
     if(!this.name() || !this.power() || this.power() <= 0 ) {
-      return; //console.log('Character added:', this.name(), this.power() );
+      return; 
     }  
     const newCharacter: Character = {
       id: this.characters().length + 1,
@@ -37,20 +35,6 @@ export class DragonballPageComponent {
     this.name.set('');
     this.power.set(0);  
   }
-
-//   powerClasses = computed(() => {
-//     const chars = this.characters();
-//     const classes: string[] = new Array(chars.length);
-//     for (let i = 0; i < chars.length; i++) {
-//       classes[i] = chars[i].power < 7000 ? 'text-danger' : 'text-primary';
-//     }
-//     return classes;
-// });
-
-  // powerClasses = computed(() => {
-  //   return { 'text-primary': true };
-  // });
-
   
   powerStyles = computed(() => {
     const chars = this.characters();
