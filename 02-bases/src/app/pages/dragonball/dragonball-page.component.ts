@@ -1,5 +1,7 @@
 import { /*NgClass,*/ NgStyle } from '@angular/common';
 import { Component, computed, signal} from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+
 
 interface Character { 
   id:number;
@@ -8,14 +10,16 @@ interface Character {
 }
 
 @Component({
-  imports: [/*NgClass,*/NgStyle],
+  imports: [/*NgClass,*/NgStyle, RouterLink,RouterLinkActive],
   templateUrl: './dragonball-page.component.html',
   styleUrl: './dragonball-page.component.css',
 })
 export class DragonballPageComponent {
   name = signal('Dragon Ball Z');
   power = signal(10000);
-  
+
+  constructor(public router: Router) {}
+
   characters = signal<Character[]>([
     { id: 1, name: 'Goku', power: 9001 },
     // { id: 2, name: 'Vegeta', power: 8500 },

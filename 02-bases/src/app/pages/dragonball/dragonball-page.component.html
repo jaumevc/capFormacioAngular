@@ -52,4 +52,10 @@
             }
         </ul>
     </div>
+    <div class="col-12 mt-2">
+        <a [routerLink]="['/hero']" [routerLinkActive]="'active'" >go to Hero</a> 
+        <br/>
+        <a (click)="router.navigate(['/dragonball-super'])" class="link-style">go to Dragonball Super</a>
+    </div>
+
 </section>
