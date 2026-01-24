@@ -30,26 +30,7 @@
     </div> 
     <div class="col-12 col-sm-6">
 
-        <h3>Llista de personatges:</h3>
+        <dragonball-character-list [characters]="characters()" [powerStyles]="powerStyles()"/>
 
-        <ul class="list-group">
-            @for (personatge of characters(); track personatge.id; let idx = $index) {
-                @if (personatge.power > 7000) {
-                    <li class="list-group-item">
-                        {{idx +1 }} - {{ personatge.name }} - 
-                    
-                        <!-- <strong [class.text-danger] ="personatge.power < 7000"> -->
-                        <!-- <strong [ngClass] ="powerClasses()[idx]"> -->
-                        <strong [ngStyle]="powerStyles()[idx]">
-                            {{ personatge.power }}
-                        </strong>
-                    
-                        <button class="btn btn-danger btn-sm float-end">Eliminar</button>
-                    </li>
-                }  @else {
-                     <strong> no cal mostrar el personatge de poders inferior o igual a 7000</strong>
-                }
-            }
-        </ul>
     </div>
 </section>
