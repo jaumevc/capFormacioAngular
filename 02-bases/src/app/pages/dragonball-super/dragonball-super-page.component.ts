@@ -28,7 +28,7 @@ export class DragonballSuperPageComponent {
     // { id: 2, name: 'Vegeta', power: 8500 },
   ]);
 
-   onCharacterAdded(character: Character) {
+   addCharacter(character: Character) {
     this.characters.update(chars => [...chars, character]);
   }
 

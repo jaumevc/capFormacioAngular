@@ -26,7 +26,10 @@ export class CharacterAdd {
     // Emetem l'event al component pare
     this.characterAdded.emit(newCharacter);
     // Netejem els camps
-    this.name.set('');
+    this.clearFields();
+  }
+  clearFields() {
+     this.name.set('');
     this.power.set(0);
   }
 }
