@@ -2,7 +2,9 @@ import { NgStyle } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { CharacterList } from '../../components/dragonball/character-list/character-list';
 import type { Character } from '../../interfaces/character.interface';
-import type { PowerStyle } from '../../interfaces/powerStyle.interface';
+// import type { PowerStyle } from '../../interfaces/powerStyle.interface';
+import { CharacterAdd } from '../../components/dragonball/character-add/character-add';
+
 // interface PowerStyle extends Record<string, string> {          
 //   color: string; 
 //   'font-weight': string;
@@ -15,43 +17,50 @@ import type { PowerStyle } from '../../interfaces/powerStyle.interface';
 // }
 
 @Component({
-  imports: [/*NgStyle,*/CharacterList],
+  imports: [/*NgStyle,*/ CharacterList, CharacterAdd],
   templateUrl: './dragonball-super-page.component.html',
   styleUrl: './dragonball-super-page.component.css',
 })
 export class DragonballSuperPageComponent {
-  name = signal('');
-  power = signal(0);
-  // powerStyles = signal([
-  //   { color: '#ff0000', 'font-weight': 'bold' },
-  //   { color: '#00ff00', 'font-weight': 'normal' },
-  //   { color: '#0000ff', 'font-weight': 'bold' }
-  // ]);
-   powerStyles = signal(<PowerStyle[]>[
-    { color: '#ff0000', 'font-weight': 'bold' },
-    { color: '#00ff00', 'font-weight': 'normal' },
-    { color: '#0000ff', 'font-weight': 'bold' }
-  ]); 
 
   characters = signal<Character[]>([
     { id: 1, name: 'Goku', power: 9001 },
     { id: 2, name: 'Vegeta', power: 8500 },
   ]);
 
-  addPersonatge() {
-    //console.log('Character added:', this.name(), this.power() );
-    if (!this.name() || !this.power() || this.power() <= 0) {
-      return;
-    }
-    const newCharacter: Character = {
-      id: this.characters().length + 1,
-      name: this.name(),
-      power: this.power(),
-    };
-    this.characters.update(chars => [...chars, newCharacter]);
-    this.name.set('');
-    this.power.set(0);
+   onCharacterAdded(character: Character) {
+    this.characters.update(chars => [...chars, character]);
   }
+
+  // name = signal('');
+  // power = signal(0);
+
+  // powerStyles = signal([
+  //   { color: '#ff0000', 'font-weight': 'bold' },
+  //   { color: '#00ff00', 'font-weight': 'normal' },
+  //   { color: '#0000ff', 'font-weight': 'bold' }
+  // ]);
+
+  //  powerStyles = signal(<PowerStyle[]>[
+  //   { color: '#ff0000', 'font-weight': 'bold' },
+  //   { color: '#00ff00', 'font-weight': 'normal' },
+  //   { color: '#0000ff', 'font-weight': 'bold' }
+  // ]); 
+
+  //  addPersonatge() {
+  //   //console.log('Character added:', this.name(), this.power() );
+  //   if (!this.name() || !this.power() || this.power() <= 0) {
+  //     return;
+  //   }
+  //   const newCharacter: Character = {
+  //     id: this.characters().length + 1,
+  //     name: this.name(),
+  //     power: this.power(),
+  //   };
+  //   this.characters.update(chars => [...chars, newCharacter]);
+  //   this.name.set('');
+  //   this.power.set(0);
+  // }
 
   // powerStyles = computed(() => {
   //   const chars = this.characters();
@@ -69,6 +78,4 @@ export class DragonballSuperPageComponent {
   //   }
   //   return styles;
   // });
-
-
 } 

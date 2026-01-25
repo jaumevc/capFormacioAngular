@@ -1,0 +1,26 @@
+<!-- <p>character-add works!</p> -->
+
+<h3>Afegir personatge: {{name()}}</h3>
+
+        <input 
+            type="text" 
+            class="form-control mt-2 mb-2" 
+            placeholder="Nom del personatge"
+            [value]="name()"
+            (change)="name.set($event.target.value)"
+            
+        />
+
+        <h3>Afegir valor del Power: {{power()}}</h3>
+        <input 
+            type="text" 
+            class="form-control mt-2 mb-2" 
+            placeholder="Poder del personatge"
+            [value]="power()"
+            (change)="power.set(+$event.target.value)"
+        />
+      
+        <button 
+            class="btn btn-primary mt-2"
+            (click)="addPersonatge()"
+        >Afegir</button>
