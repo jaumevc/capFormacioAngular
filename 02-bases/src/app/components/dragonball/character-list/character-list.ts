@@ -10,9 +10,7 @@ import type { PowerStyle } from '../../../interfaces/powerStyle.interface';
 })
 export class CharacterList {
   characters = input.required<Character[]>();
-  
-  // powerStyles = input.required<PowerStyle[]>();
-
   listName = input.required<string>();
+  // powerStyles = input.required<PowerStyle[]>();
 
 }
