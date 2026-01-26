@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { Character } from '../interfaces/character.interface';
 
 @Injectable({
@@ -15,5 +15,12 @@ export class DragonballService {
    addCharacter(character: Character) {
     this.characters.update(chars => [...chars, character]);
   }
+
+   //5.61: effect per afegir personatges al localstorage:
+  saveToLocalStorage= effect(() => {
+    const chars = this.characters();
+    localStorage.setItem('personatges', JSON.stringify(chars));
+    console.log(`Quantitat de personatges: ${chars.length}`);
+  });
 }
 
