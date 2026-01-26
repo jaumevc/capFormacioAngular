@@ -1,9 +1,10 @@
 import { NgStyle } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CharacterList } from '../../components/dragonball/character-list/character-list';
 import type { Character } from '../../interfaces/character.interface';
 // import type { PowerStyle } from '../../interfaces/powerStyle.interface';
 import { CharacterAdd } from '../../components/dragonball/character-add/character-add';
+import { DragonballService } from '../../services/dragonball.service';
 
 // interface PowerStyle extends Record<string, string> {          
 //   color: string; 
@@ -23,14 +24,19 @@ import { CharacterAdd } from '../../components/dragonball/character-add/characte
 })
 export class DragonballSuperPageComponent {
 
-  characters = signal<Character[]>([
-    // { id: 1, name: 'Goku', power: 9001 },
-    // { id: 2, name: 'Vegeta', power: 8500 },
-  ]);
+   public dragonballService = inject(DragonballService);
+  //constructor( public dragonballService:DragonballService) {}
 
-   addCharacter(character: Character) {
-    this.characters.update(chars => [...chars, character]);
-  }
+ 
+
+  // characters = signal<Character[]>([
+  //   // { id: 1, name: 'Goku', power: 9001 },
+  //   // { id: 2, name: 'Vegeta', power: 8500 },
+  // ]);
+
+  //  addCharacter(character: Character) {
+  //   this.characters.update(chars => [...chars, character]);
+  // }
 
   // name = signal('');
   // power = signal(0);
