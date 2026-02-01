@@ -8,6 +8,7 @@ export const environment = {
     
     //apiUrl: 'https://api.pro.my-angular-app.com',
     //apiKeys 
+    apiKey: 'YyhetJvyYDyO9ugmcdXIsaAyoSYp2DRP',
 }; 
 
 

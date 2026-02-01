@@ -6,6 +6,8 @@ export const environment = {
     companyName2:'My Company 2',
     companySlogan:'Gestiona Gifs',
     
-    //apiUrl: 'https://api.dev.my-angular-app.com',
+    //apiUrl: 'https://api.pro.my-angular-app.com',
     //apiKeys 
+    apiKey: 'YyhetJvyYDyO9ugmcdXIsaAyoSYp2DRP',
+    
 };
