@@ -7,7 +7,7 @@ export const environment = {
     companySlogan:'Gestiona Gifs',
     
     //apiKeys 
-    apiKey: 'YyhetJvyYDyO9ugmcdXIsaAyoSYp2DRP',
+    apiKey: 'yyhetJvyYDyO9ugmcdXIsaAyoSYp2DRP',
     giphyApiUrl: 'https://api.giphy.com/v1/gifs',
 }; 
 
