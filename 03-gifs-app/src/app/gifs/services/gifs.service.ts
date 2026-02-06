@@ -13,6 +13,7 @@ export class GifsService {
   private httpClient = inject(HttpClient); // Assume this is initialized properly elsewhere
 
   trendingGifs= signal<Gif[]>([]);
+  trendingGifLoading = signal<boolean>(true);
 
   constructor() {
     this.loadTrendingGifs();
@@ -35,6 +36,7 @@ export class GifsService {
       console.log('Gifs mapejats:', gifs);
       //coloquem els gifs mapejats a la senyal
       this.trendingGifs.set(gifs);
+      this.trendingGifLoading.set(false);
       
     });
 
