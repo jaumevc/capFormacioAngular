@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { GifList } from "@app/gifs/gif-list/gif-list";
+import { GifsService } from '@app/gifs/services/gifs.service';
 
 @Component({
   selector: 'app-search-page',
-  imports: [],
+  imports: [GifList],
   templateUrl: './search-page.html',
   styleUrl: './search-page.css',
 })
 export default class SearchPage {
 
+  //Injectem el nou serve de cewrca de gifs
+  gifSearchService = inject(GifsService);
+
+  onSearch(term: string) {
+    // console.log('Search term:', term);
+    // Aquí puedes agregar la lógica para realizar la búsqueda de GIFs utilizando el término ingresado
+    this.gifSearchService.searchGifs(term);
+  }
+  
 }
