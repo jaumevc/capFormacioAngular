@@ -4,6 +4,7 @@ import { environment } from '@env/environment';
 import type { GiphyResponse } from '../interfaces/giphy.interfaces';
 import { Gif } from '../interfaces/gif.interface';
 import { GifMapper } from '../mapper/gif.mapper';
+import { map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -43,10 +44,24 @@ export class GifsService {
         q: query,
         limit: '25',
       }
-    }).subscribe((resposta) => {
-      const gifs = GifMapper.mapToGifArray(resposta.data);
-      console.log('Gifs cercats:', gifs);
-    });
+      // usem els metodes de rxjs amb pipe 
+      // aquest que permet encadenar funcionaments dels obsevables com per exemple tap, map, filter, etc...
+      }).pipe(
+        //el tap servei per disparar objectes secundaris com per exemple un console.log, 
+        // sense modificar la resposta que es rep del servei
+        // tap(resposta => console.log('Resposta amb tap: ', resposta)),
+        // map(resposta => GifMapper.mapToGifArray(resposta.data)),
+        map(({ data }) => data),
+        map(giphyItems => GifMapper.mapToGifArray(giphyItems)),
+
+        //TODO: historial de cerques, guardar les cerques anteriors en un array i mostrar-les a la UI
+      )
+
+    // .subscribe((resposta) => {
+    //   const gifs = GifMapper.mapToGifArray(resposta.data);
+    //   console.log('Gifs cercats:', gifs);
+    // });
   }
+
 
 }
