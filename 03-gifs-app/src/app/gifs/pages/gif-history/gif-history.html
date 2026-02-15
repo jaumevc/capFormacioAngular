@@ -1,3 +1,14 @@
-<p>gif-history works!</p>
+<h3 class="text-2x font-bold mt-4">Mostrant consulta per cerca de: {{query()}}</h3>
 
-<h3>{{query()}}</h3>
+<!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    @for( gif of gifsByTerm(); track gif){
+    <div class="bg-white/10 p-4 rounded-lg">
+        <img [src]="gif.url" [alt]="gif.title" class="w-full h-auto rounded-lg shadow-md">
+    </div>  
+    }
+</div> -->
+
+<section class="py-5">
+   <gif-list [gifs]="gifsByTerm()"/>
+</section>
+

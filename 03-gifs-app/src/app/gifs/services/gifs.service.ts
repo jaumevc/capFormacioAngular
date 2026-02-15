@@ -4,7 +4,7 @@ import { environment } from '@env/environment';
 import type { GiphyResponse } from '../interfaces/giphy.interfaces';
 import { Gif } from '../interfaces/gif.interface';
 import { GifMapper } from '../mapper/gif.mapper';
-import { map, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +14,9 @@ export class GifsService {
   trendingGifs = signal<Gif[]>([]); //inicialitzat com a array buit
   trendingGifLoading = signal<boolean>(true); //inicialitzat a true
 
-  searHistory = signal<Record<string,Gif[]>>({}); //inicialitzat com a objecte buit
+  searchHistory = signal<Record<string,Gif[]>>({}); //inicialitzat com a objecte buit
   //computed per obtenir les claus de l'historial de cerques, que seran els termes de cerca:
-  searchedHistoryKeys = computed(() => Object.keys(this.searHistory())); 
+  searchedHistoryKeys = computed(() => Object.keys(this.searchHistory())); 
 
 
   constructor() { this.loadTrendingGifs();}
@@ -41,7 +41,7 @@ export class GifsService {
     });
   }
 
-  searchGifs(query: string) {
+  searchGifs(query: string) : Observable<Gif[]> {
     // Lògica per cercar gifs per nom, descripció o tags
     return this.httpClient.get<GiphyResponse>(`${environment.giphyApiUrl}/search`, {
       params: {
@@ -61,7 +61,7 @@ export class GifsService {
         //TODO: historial de cerques, guardar les cerques anteriors en un array i mostrar-les a la UI
         tap(gifitems => {
           //guardar els gifs cercats a l'historial de cerques, associant-los al terme de cerca
-          this.searHistory.update(history => {
+          this.searchHistory.update(history => {
             return {
               ...history, // mantenim l'historial anterior
               [query.toLowerCase()]: gifitems
@@ -75,6 +75,9 @@ export class GifsService {
     // });
   }
 
-
+  getHistoryByTerm(term: string): Gif[] {
+    //obtenim els gifs associats al terme de cerca, si no existeix el terme retornem un array buit
+    return this.searchHistory()[term] || [];
+  }
 
 }
