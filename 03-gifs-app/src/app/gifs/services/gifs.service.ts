@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '@env/environment';
 import type { GiphyResponse } from '../interfaces/giphy.interfaces';
 import { Gif } from '../interfaces/gif.interface';
@@ -11,8 +11,13 @@ import { map, tap } from 'rxjs';
 })
 export class GifsService {
   private httpClient = inject(HttpClient); // Assume this is initialized properly elsewhere
-  trendingGifs = signal<Gif[]>([]);
-  trendingGifLoading = signal<boolean>(true);
+  trendingGifs = signal<Gif[]>([]); //inicialitzat com a array buit
+  trendingGifLoading = signal<boolean>(true); //inicialitzat a true
+
+  searHistory = signal<Record<string,Gif[]>>({}); //inicialitzat com a objecte buit
+  //computed per obtenir les claus de l'historial de cerques, que seran els termes de cerca:
+  searchedHistoryKeys = computed(() => Object.keys(this.searHistory())); 
+
 
   constructor() { this.loadTrendingGifs();}
 
@@ -53,15 +58,23 @@ export class GifsService {
         // map(resposta => GifMapper.mapToGifArray(resposta.data)),
         map(({ data }) => data),
         map(giphyItems => GifMapper.mapToGifArray(giphyItems)),
-
         //TODO: historial de cerques, guardar les cerques anteriors en un array i mostrar-les a la UI
-      )
-
+        tap(gifitems => {
+          //guardar els gifs cercats a l'historial de cerques, associant-los al terme de cerca
+          this.searHistory.update(history => {
+            return {
+              ...history, // mantenim l'historial anterior
+              [query.toLowerCase()]: gifitems
+            }
+          });
+        })
+      );
     // .subscribe((resposta) => {
     //   const gifs = GifMapper.mapToGifArray(resposta.data);
     //   console.log('Gifs cercats:', gifs);
     // });
   }
+
 
 
 }

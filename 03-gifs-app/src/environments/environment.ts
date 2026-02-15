@@ -3,7 +3,7 @@ export const environment = {
     packageName: 'my-angular-app',
     production: true,
     companyName:'My Company',
-    companyName2:'My Company 2',
+    companyName2:'My Company of Gifs.',
     companySlogan:'Gestiona Gifs',
     
     //apiKeys 

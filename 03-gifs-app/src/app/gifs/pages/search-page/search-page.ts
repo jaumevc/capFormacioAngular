@@ -11,21 +11,18 @@ import { GifsService } from '@app/gifs/services/gifs.service';
 })
 export default class SearchPage {
 
-  //Injectem el nou serve de cewrca de gifs
+  //Injectem el nou servei de cerca de gifs
   gifSearchService = inject(GifsService);
 
   //afegim els gifs resultat de la cerca:
   gifs = signal<Gif[]>([]);
 
-
   onSearch(term: string) {
     // console.log('Search term:', term);
-    // Aquí puedes agregar la lógica para realizar la búsqueda de GIFs utilizando el término ingresado
+    // lògica x cercar de GIFs usant el terme de cerca que hagis posat
     this.gifSearchService.searchGifs(term).subscribe((resposta) => {
       // console.log('Gifs cercats:', resposta);
       this.gifs.set(resposta);
     }); 
   }
-
-  
 }

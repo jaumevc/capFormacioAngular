@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MenuOption } from '../../../interfaces/menu-option.interface'; 
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { GifsService } from '../../../services/gifs.service';
 
 
 @Component({
@@ -10,6 +11,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './side-menu-options.css',
 })
 export class SideMenuOptions {
+
+  // Els serveis No s'importen com a component, 
+  // sinó que s'injecten com a dependències.:
+  gifsService = inject(GifsService);
+
   public menuOptions: MenuOption[] = [
     {
       label: 'Tendències',  
