@@ -19,6 +19,11 @@ export const routes: Routes = [
                 loadComponent: () => import('./gifs/pages/search-page/search-page')
             },
             {
+                path: 'history/:term',
+                //perque es carregui de manera lazy. Nomes es carregara quan s'accedeixi a aquesta ruta.
+                loadComponent: () => import('./gifs/pages/gif-history/gif-history')
+            },
+            {
                 path: '**',
                 redirectTo: 'trending'
             }
