@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { environment } from '@env/environment';
 import type { GiphyResponse } from '../interfaces/giphy.interfaces';
 import { Gif } from '../interfaces/gif.interface';
@@ -14,7 +14,8 @@ export class GifsService {
   trendingGifs = signal<Gif[]>([]); //inicialitzat com a array buit
   trendingGifLoading = signal<boolean>(true); //inicialitzat a true
 
-  searchHistory = signal<Record<string,Gif[]>>({}); //inicialitzat com a objecte buit
+  //searchHistory = signal<Record<string,Gif[]>>({}); //inicialitzat com a objecte buit
+  searchHistory = signal<Record<string,Gif[]>>(this.loadGifsFromLocalStorage());
   //computed per obtenir les claus de l'historial de cerques, que seran els termes de cerca:
   searchedHistoryKeys = computed(() => Object.keys(this.searchHistory())); 
 
@@ -79,5 +80,22 @@ export class GifsService {
     //obtenim els gifs associats al terme de cerca, si no existeix el terme retornem un array buit
     return this.searchHistory()[term] || [];
   }
+
+  saveGifsToLocalStorage = effect(() => {
+    // Lògica per guardar les cerques i els gifs associats al local storage
+    const history = this.searchHistory();
+    localStorage.setItem('gifSearchHistory', JSON.stringify(history));
+  });
+
+  //Es necesari perque la cerca: searchHistory = signal<Record<string,Gif[]>>({});//inicialitzat com a objecte buit
+  loadGifsFromLocalStorage() : Record<string, Gif[]> {
+    // Lògica per carregar les cerques i els gifs associats des del local storage
+    const historyString = localStorage.getItem('gifSearchHistory');
+    if (historyString) {
+      const history = JSON.parse(historyString);
+      return history;
+    }
+    return {};
+  } 
 
 }
