@@ -10,9 +10,25 @@ import { map, Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class GifsService {
+
   private httpClient = inject(HttpClient); // Assume this is initialized properly elsewhere
+
   trendingGifs = signal<Gif[]>([]); //inicialitzat com a array buit
   trendingGifLoading = signal<boolean>(true); //inicialitzat a true
+
+  //intentarem fer això: [[gif,gif,gif],[gif,gif,gif],[gif,gif,gif]...]
+  trendingGifsGrouped = computed<Gif[][]>(() => {
+    const gifs = this.trendingGifs();
+    const grouped: Gif[][] = [];  
+    for (let i = 0; i < gifs.length; i += 3) {
+      grouped.push(gifs.slice(i, i + 3)); //agafem grups de 3 gifs
+    }  
+    
+    console.log('Gifs agrupats:', grouped);
+
+    return grouped;
+  });
+
 
   //searchHistory = signal<Record<string,Gif[]>>({}); //inicialitzat com a objecte buit
   searchHistory = signal<Record<string,Gif[]>>(this.loadGifsFromLocalStorage());
